@@ -7,4 +7,8 @@
 	background-color: #5322e0;
 	background: linear-gradient(270deg, #5322e0 3.82%, #5fafd4 105.73%);
 	color: #fff;
+
+	&:disabled {
+		background: #b8b8b8;
+	}
 }
