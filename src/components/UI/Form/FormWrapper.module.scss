@@ -1,0 +1,18 @@
+.form_wrapper {
+	display: block;
+	padding: 1.5rem;
+	max-width: 24rem;
+	width: 100%;
+	margin: 0 auto;
+	background-color: #fff;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 1rem rgba($color: #000000, $alpha: 0.05);
+}
+
+.form_title {
+	font-size: 1.5rem;
+	margin-bottom: 2rem;
+	color: #5322e0;
+	text-transform: uppercase;
+	letter-spacing: 0.04rem;
+}
