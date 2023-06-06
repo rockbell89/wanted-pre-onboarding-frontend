@@ -13,13 +13,13 @@ const PrivateLayout = () => {
 	if (!isAuth) return <Navigate to="/signin" />;
 
 	return (
-		<div className={styles.private_layaout}>
-			<header className={styles.pravate_header}>
+		<div className={styles.private_layout}>
+			<header className={styles.private_header}>
 				<button type="button" onClick={handleSignout}>
 					로그아웃
 				</button>
 			</header>
-			<div className={styles.private_conatiner}>
+			<div className={styles.private_container}>
 				<Outlet />
 			</div>
 		</div>
