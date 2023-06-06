@@ -1,0 +1,11 @@
+.empty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 24rem;
+}
+
+.todo_list {
+	max-height: 24rem;
+	overflow-y: auto;
+}

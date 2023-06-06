@@ -1,0 +1,20 @@
+.todo_form {
+	display: flex;
+	align-items: stretch;
+	gap: 0.5rem;
+	margin: 1rem 0;
+	> div {
+		width: 100%;
+	}
+
+	button {
+		display: block;
+		width: 6rem;
+		background-color: #323232;
+		color: #fff;
+		border-radius: 0.5rem;
+		svg {
+			margin-right: 0.5rem;
+		}
+	}
+}
