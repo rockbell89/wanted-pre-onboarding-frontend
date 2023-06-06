@@ -6,6 +6,7 @@ interface InputFieldPrpos extends BaseComponentProps {
 	label: string;
 	name: string;
 	placeholder?: string;
+	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputField = ({
@@ -13,12 +14,20 @@ const InputField = ({
 	label,
 	name,
 	placeholder,
+	onChange,
 	...restProps
 }: InputFieldPrpos) => {
 	return (
 		<div className={styles.input_field}>
 			<label htmlFor={name}>{label}</label>
-			<input type={type} id={name} placeholder={placeholder} {...restProps} />
+			<input
+				type={type}
+				id={name}
+				name={name}
+				placeholder={placeholder}
+				onChange={onChange}
+				{...restProps}
+			/>
 		</div>
 	);
 };
