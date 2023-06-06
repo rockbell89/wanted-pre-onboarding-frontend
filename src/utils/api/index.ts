@@ -6,6 +6,7 @@ const ACCESS_TOKEN = localStorage.getItem('access_token');
 const axiosConfig: AxiosRequestConfig = {
 	baseURL: BASE_URL,
 	headers: {
+		'Content-Type': 'application/json',
 		Authorization: `Bearer ${ACCESS_TOKEN}`,
 		withCredentials: true,
 	},

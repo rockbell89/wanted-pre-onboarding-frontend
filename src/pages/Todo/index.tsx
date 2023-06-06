@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TodoList from '../../components/Todo/TodoList';
-import { TodoCreateData, TodoData } from '../../types';
+import { TodoCreateData, TodoData, TodoUpdateData } from '../../types';
 import instance from '../../utils/api';
 import FormWrapper from '../../components/UI/Form/FormWrapper';
 import useInputs from '../../hooks/useInputs';
@@ -16,27 +16,65 @@ const Todo = () => {
 	} = useInputs<TodoCreateData>({
 		todo: '',
 	});
-	const [todos, setTodos] = useState<TodoData[]>([]);
+	const [todoList, setTodoList] = useState<TodoData[]>([]);
 
 	const fetchTodos = async () => {
 		try {
 			const { data: todos } = await instance.get('/todos');
 			if (todos) {
-				setTodos(todos);
+				setTodoList(todos);
 			}
 		} catch (error) {
 			console.error(error);
 		}
 	};
 
-	const createTodo = async () => {
+	const handleCreateTodo = async () => {
 		try {
 			const { data: newTodo } = await instance.post('/todos', {
 				todo,
 			});
 			if (newTodo) {
-				setTodos((prevState) => [...prevState, newTodo]);
+				setTodoList((prevState) => [...prevState, newTodo]);
 				onReset();
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const handleDeleteTodo = async (id: number) => {
+		try {
+			const response = await instance.delete(`/todos/${id}`);
+			if (response.status === 204) {
+				setTodoList((prevState) =>
+					prevState.filter((item: TodoData) => item.id !== id),
+				);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const handleUpdateTodo = async (
+		id: number,
+		todoUpdateData: TodoUpdateData,
+	) => {
+		try {
+			const { data, status } = await instance.put(
+				`/todos/${id}`,
+				todoUpdateData,
+			);
+			if (status === 200 && data) {
+				setTodoList((prevState) => {
+					return prevState.map((item: TodoData) => {
+						if (item.id === id) {
+							return { ...item, todoUpdateData };
+						}
+						return item;
+					});
+				});
+				fetchTodos();
 			}
 		} catch (error) {
 			console.error(error);
@@ -46,10 +84,6 @@ const Todo = () => {
 	useEffect(() => {
 		fetchTodos();
 	}, []);
-
-	useEffect(() => {
-		console.log('ss', todo);
-	}, [todo]);
 
 	return (
 		<FormWrapper title="Todo List">
@@ -62,12 +96,16 @@ const Todo = () => {
 					data-testid="new-todo-input"
 					onChange={onChange}
 				/>
-				<button onClick={createTodo}>
+				<button onClick={handleCreateTodo} data-testid="new-todo-add-button">
 					<HiOutlinePencilAlt />
 					추가
 				</button>
 			</TodoForm>
-			<TodoList todos={todos} />
+			<TodoList
+				todos={todoList}
+				onDelete={handleDeleteTodo}
+				onUpdate={handleUpdateTodo}
+			/>
 		</FormWrapper>
 	);
 };

@@ -8,3 +8,8 @@ export interface TodoData {
 export interface TodoCreateData {
 	todo: string;
 }
+
+export interface TodoUpdateData {
+	todo: string;
+	isCompleted?: boolean;
+}

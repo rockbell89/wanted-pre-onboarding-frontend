@@ -1,6 +1,7 @@
 .todo_item {
 	display: flex;
-	align-items: center;
+	align-items: stretch;
+	gap: 0.25rem;
 
 	+ .todo_item {
 		margin-top: 1rem;
@@ -9,10 +10,11 @@
 	label {
 		display: flex;
 		align-items: center;
-		padding: 1rem;
+		padding: 0.5rem 1rem;
 		background-color: #f0f0f0;
 		border-radius: 0.5rem;
 		width: 100%;
+		cursor: pointer;
 
 		.todo_item_checkbox {
 			display: inline-flex;
@@ -25,5 +27,31 @@
 			border-radius: 50%;
 			margin-right: 1rem;
 		}
+
+		&.todo_item_active {
+			text-decoration: line-through;
+		}
+	}
+
+	.todo_item_modify_input {
+		width: 100%;
+	}
+}
+
+.todo_item_button {
+	width: 4rem;
+	background-color: #a3a3a3;
+	border-radius: 0.5rem;
+	color: #fff;
+
+	&.todo_item_button_modify {
+		background-color: #1f8e6b;
+	}
+
+	&.todo_item_button_delete {
+		background-color: #d20707;
+	}
+	&.todo_item_button_submit {
+		background-color: #5322e0;
 	}
 }

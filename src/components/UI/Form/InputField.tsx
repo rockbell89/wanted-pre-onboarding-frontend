@@ -15,11 +15,12 @@ const InputField = ({
 	name,
 	value,
 	placeholder,
+	className,
 	onChange,
 	...restProps
 }: InputFieldPrpos) => {
 	return (
-		<div className={styles.input_field}>
+		<div className={`${styles.input_field} ${className}`}>
 			{label && <label htmlFor={name}>{label}</label>}
 			<input
 				type={type}
