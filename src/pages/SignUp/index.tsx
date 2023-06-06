@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import InputField from '../../components/UI/Form/InputField';
 import Button from '../../components/UI/Button/Button';
 import FormWrapper from '../../components/UI/Form/FormWrapper';
@@ -82,6 +82,9 @@ const SignUp = () => {
 						회원가입
 					</Button>
 				</ButtonWrapper>
+				<div className="text-wrapper text-center">
+					<Link to={'/signin'}>로그인 하러가기</Link>
+				</div>
 			</form>
 		</FormWrapper>
 	);
