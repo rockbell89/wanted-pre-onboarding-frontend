@@ -18,7 +18,7 @@ const InputField = ({
 	return (
 		<div className={styles.input_field}>
 			<label htmlFor={name}>{label}</label>
-			<input type={type} id={name} {...restProps} placeholder={placeholder} />
+			<input type={type} id={name} placeholder={placeholder} {...restProps} />
 		</div>
 	);
 };

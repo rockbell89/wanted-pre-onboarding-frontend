@@ -9,7 +9,6 @@ const Button = ({ type, children, className, ...resProps }: ButtonProps) => {
 	return (
 		<button
 			type={type}
-			{...resProps}
 			className={`${styles.button} ${className}`}
 			{...resProps}
 		>
