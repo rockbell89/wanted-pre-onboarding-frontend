@@ -1,26 +1,45 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+	Navigate,
+	RouterProvider,
+	createBrowserRouter,
+} from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import SignUp from './pages/SignUp';
 import './App.scss';
 import SignIn from './pages/SignIn';
 import Todo from './pages/Todo';
+import GuestLayout from './components/layouts/GuestLayout';
+import PrivateLayout from './components/layouts/PrivateLayout';
 
 const router = createBrowserRouter([
 	{
-		path: '/',
 		element: <Layout />,
 		children: [
 			{
-				path: 'signup',
-				element: <SignUp />,
+				path: '/',
+				element: <Navigate to="/signin" />,
 			},
 			{
-				path: 'signin',
-				element: <SignIn />,
+				element: <GuestLayout />,
+				children: [
+					{
+						path: 'signup',
+						element: <SignUp />,
+					},
+					{
+						path: 'signin',
+						element: <SignIn />,
+					},
+				],
 			},
 			{
-				path: 'todo',
-				element: <Todo />,
+				element: <PrivateLayout />,
+				children: [
+					{
+						path: 'todo',
+						element: <Todo />,
+					},
+				],
 			},
 		],
 	},
