@@ -13,6 +13,7 @@ const InputField = ({
 	type,
 	label,
 	name,
+	value,
 	placeholder,
 	onChange,
 	...restProps
@@ -24,6 +25,7 @@ const InputField = ({
 				type={type}
 				id={name}
 				name={name}
+				value={value}
 				placeholder={placeholder}
 				onChange={onChange}
 				{...restProps}
