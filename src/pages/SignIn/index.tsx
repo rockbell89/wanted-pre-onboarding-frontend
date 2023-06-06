@@ -8,6 +8,7 @@ import useInputs from '../../hooks/useInputs';
 import { signData } from '../../types';
 import { validateEmail, validatePassword } from '../../utils/validate';
 import instance from '../../utils/api';
+import jwtStorageService from '../../utils/jwt';
 
 const SignIn = () => {
 	const navigate = useNavigate();
@@ -31,7 +32,7 @@ const SignIn = () => {
 			});
 
 			if (data.access_token) {
-				localStorage.setItem('access_token', data.access_token);
+				jwtStorageService.setToken(data.access_token);
 				navigate('/todo');
 			}
 		} catch (error) {

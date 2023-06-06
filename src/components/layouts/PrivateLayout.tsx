@@ -1,13 +1,14 @@
 import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+import jwtStorageService from '../../utils/jwt';
 import styles from './PrivateLayout.module.scss';
 
 const PrivateLayout = () => {
-	const isAuth = localStorage.getItem('access_token');
+	const isAuth = jwtStorageService.getToken();
 
-	const navigaet = useNavigate();
+	const navigate = useNavigate();
 	const handleSignout = () => {
-		localStorage.removeItem('access_token');
-		navigaet('/signin');
+		jwtStorageService.removeToken();
+		navigate('/signin');
 	};
 
 	if (!isAuth) return <Navigate to="/signin" />;

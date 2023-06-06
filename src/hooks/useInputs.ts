@@ -13,7 +13,6 @@ const useInputs = <T extends Record<string, any>>(initialFormData: T) => {
 
 	const onReset = () => {
 		setFormData(initialFormData);
-		console.log(initialFormData);
 	};
 
 	return {

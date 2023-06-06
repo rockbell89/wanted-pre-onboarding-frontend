@@ -1,8 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import jwtStorageService from '../../utils/jwt';
 import styles from './GuestLayout.module.scss';
 
 const GuestLayout = () => {
-	const isAuth = localStorage.getItem('access_token');
+	const isAuth = jwtStorageService.getToken();
 
 	if (isAuth) {
 		return <Navigate to="/todo" />;

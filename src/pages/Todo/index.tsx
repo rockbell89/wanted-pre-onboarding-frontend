@@ -29,7 +29,8 @@ const Todo = () => {
 		}
 	};
 
-	const handleCreateTodo = async () => {
+	const handleCreateTodo = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
 		try {
 			const { data: newTodo } = await instance.post('/todos', {
 				todo,
@@ -87,20 +88,22 @@ const Todo = () => {
 
 	return (
 		<FormWrapper title="Todo List">
-			<TodoForm>
-				<InputField
-					type="text"
-					placeholder="오늘의 할 일"
-					name="todo"
-					value={todo}
-					data-testid="new-todo-input"
-					onChange={onChange}
-				/>
-				<button onClick={handleCreateTodo} data-testid="new-todo-add-button">
-					<HiOutlinePencilAlt />
-					추가
-				</button>
-			</TodoForm>
+			<form onSubmit={handleCreateTodo}>
+				<TodoForm>
+					<InputField
+						type="text"
+						placeholder="오늘의 할 일"
+						name="todo"
+						value={todo}
+						data-testid="new-todo-input"
+						onChange={onChange}
+					/>
+					<button type="submit" data-testid="new-todo-add-button">
+						<HiOutlinePencilAlt />
+						추가
+					</button>
+				</TodoForm>
+			</form>
 			<TodoList
 				todos={todoList}
 				onDelete={handleDeleteTodo}

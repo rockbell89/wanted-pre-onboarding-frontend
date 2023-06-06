@@ -30,7 +30,6 @@ const SignUp = () => {
 				email,
 				password,
 			});
-			console.log(response);
 			if (response.status === 201) {
 				navigate('/signin');
 			}
