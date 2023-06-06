@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import InputField from '../../components/UI/Form/InputField';
 import Button from '../../components/UI/Button/Button';
 import FormWrapper from '../../components/UI/Form/FormWrapper';
@@ -6,8 +7,10 @@ import ButtonWrapper from '../../components/UI/Button/ButtonWrapper';
 import useInputs from '../../hooks/useInputs';
 import { signData } from '../../types';
 import { validateEmail, validatePassword } from '../../utils/validate';
+import instance from '../../utils/api';
 
 const SignUp = () => {
+	const navigate = useNavigate();
 	const [isDisabled, setIsDisabled] = useState(true);
 
 	const {
@@ -19,8 +22,22 @@ const SignUp = () => {
 		password: '',
 	});
 
-	const handleSignUp = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+
+		try {
+			const response = await instance.post('/auth/signup', {
+				email,
+				password,
+			});
+			console.log(response);
+			if (response.status === 201) {
+				navigate('/signin');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+
 		onReset();
 	};
 
