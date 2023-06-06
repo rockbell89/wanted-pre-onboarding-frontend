@@ -5,10 +5,11 @@ import FormWrapper from '../../components/UI/Form/FormWrapper';
 import ButtonWrapper from '../../components/UI/Button/ButtonWrapper';
 import useInputs from '../../hooks/useInputs';
 import { signData } from '../../types';
+import { validateEmail, validatePassword } from '../../utils/validate';
 
 const SignUp = () => {
-	const [isValidEmail, setIsValidEmail] = useState(true);
-	const [isValidPassword, setIsValidPassword] = useState(true);
+	const [isDisabled, setIsDisabled] = useState(true);
+
 	const {
 		formData: { email, password },
 		onChange,
@@ -24,15 +25,10 @@ const SignUp = () => {
 	};
 
 	useEffect(() => {
-		if (!email.includes('@')) {
-			setIsValidEmail(true);
+		if (validateEmail(email) && validatePassword(password)) {
+			setIsDisabled(false);
 		} else {
-			setIsValidEmail(false);
-		}
-		if (password.length < 8) {
-			setIsValidPassword(true);
-		} else {
-			setIsValidPassword(false);
+			setIsDisabled(true);
 		}
 	}, [email, password]);
 
@@ -65,7 +61,7 @@ const SignUp = () => {
 					<Button
 						type="submit"
 						data-testid="signup-button"
-						disabled={isValidEmail || isValidPassword}
+						disabled={isDisabled}
 					>
 						회원가입
 					</Button>
