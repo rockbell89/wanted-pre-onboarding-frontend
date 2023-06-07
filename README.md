@@ -1,7 +1,8 @@
 ## 김보라 - 원티디 프론트엔드 프로온보딩 인턴십 사전과제
 
 ### 데모 영상
-![image](https://github.com/rockbell89/wanted-pre-onboarding-frontend/assets/52031484/1e97174e-2018-46d0-a37e-8b10f9f3dfef)
+![React-App-Chrome-2023-06-07-17-24-29](https://github.com/rockbell89/wanted-pre-onboarding-frontend/assets/52031484/0d7cb270-cfe7-4354-985d-29435a755535)
+
 
 ### 배포
 
